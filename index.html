@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmony Launcher - Элегантный Minecraft лаунчер</title>
+    <meta name="description" content="Harmony Launcher - современный Minecraft лаунчер с красивым интерфейсом, облачными сохранениями и уникальными темами">
+    <meta property="og:title" content="Harmony Launcher">
+    <meta property="og:description" content="Элегантный Minecraft лаунчер с фиолетовой темой">
+    <meta property="og:image" content="assets/images/icon_og.jpg">
+    <link rel="icon" href="assets/images/icon_og.jpg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Анимированный фон -->
+        <div class="animated-background">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
+        </div>
+
+        <!-- Заголовок -->
+        <header class="header">
+            <div class="header-container">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="assets/images/icon_og.jpg" alt="Harmony Launcher" class="logo-img">
+                    </div>
+                    <div class="logo-text">
+                        <h1>Harmony Launcher</h1>
+                        <p class="version">v2.5.3</p>
+                    </div>
+                </div>
+                
+                <nav class="nav">
+                    <ul>
+                        <li><a href="#hero" class="nav-link">Главная</a></li>
+                        <li><a href="#features" class="nav-link">Возможности</a></li>
+                        <li><a href="#themes" class="nav-link">Внешний вид</a></li>
+                        <li><a href="#download" class="nav-link">Скачать</a></li>
+                        <li><a href="#community" class="nav-link">Сообщество</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="#download" class="btn btn-primary btn-download-header">
+                        <i class="fas fa-download"></i>
+                        Скачать
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Главная секция -->
+        <section id="hero" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <i class="fas fa-star"></i>
+                        <span>Лучший Minecraft лаунчер 2025</span>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        <span class="gradient-text">Harmony Launcher</span>
+                        <br>Элегантный Minecraft лаунчер
+                    </h1>
+                    
+                    <p class="hero-description">
+                        Погрузитесь в мир Minecraft с нашим красивым лаунчером. 
+                        Куча тем, плавные анимации и все необходимые функции 
+                        для комфортной игры.
+                    </p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">0, станьте первым</span>
+                            <span class="stat-label">Игроков</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15</span>
+                            <span class="stat-label">Тем</span>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-actions">
+                        <a href="#download" class="btn btn-primary btn-large">
+                            <i class="fas fa-download"></i>
+                            Скачать бесплатно
+                        </a>
+                        <a href="#themes" class="btn btn-secondary btn-large">
+                            <i class="fas fa-play"></i>
+                            Смотреть демо
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="launcher-preview">
+                        <div class="preview-window">
+                            <div class="window-header">
+                                <div class="window-controls">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                                <div class="window-title">Harmony Launcher</div>
+                            </div>
+                            <div class="window-content">
+                                <img src="assets/images/main_screen.jpg" alt="Главный экран Harmony Launcher" class="launcher-screenshot">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Возможности -->
+        <section id="features" class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Возможности</h2>
+                    <p class="section-subtitle">Все что нужно для комфортной игры в Minecraft</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>Красивые темы</h3>
+                        <p>15 уникальных тем оформления с фиолетовыми акцентами и плавными переходами</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Быстрый запуск</h3>
+                        <p>Оптимизированный запуск игры с автоматическим обновлением и управлением модами</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Безопасность</h3>
+                        <p>Лаунчер не собирает никаких данных о вас, и никуда их не отправляет</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Темы -->
+        <section id="themes" class="themes">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Внешний вид</h2>
+                    <p class="section-subtitle">Посмотрите какой шанс вы упускаете, не скачав этот лаунчер</p>
+                </div>
+                
+                <div class="themes-showcase">
+                    <div class="theme-preview active">
+                        <div class="theme-preview-window">
+                            <div class="theme-header">
+                                <div class="theme-controls">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="theme-content">
+                                <img src="assets/images/main_screen.jpg" alt="Главное окно" class="theme-screenshot">
+                            </div>
+                        </div>
+                        <div class="theme-info">
+                            <h3>Главное окно</h3>
+                            <p>Красивый и привлекательный дизайн</p>
+                        </div>
+                    </div>
+                    
+                    <div class="theme-preview">
+                        <div class="theme-preview-window theme-dark">
+                            <div class="theme-header">
+                                <div class="theme-controls">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="theme-content">
+                                <img src="assets/images/settings.jpg" alt="Settings" class="theme-screenshot">
+                            </div>
+                        </div>
+                        <div class="theme-info">
+                            <h3>Окно настроек</h3>
+                            <p>Все настройки в одном месте, и 15 привлекательных тем</p>
+                        </div>
+                    </div>
+                    
+                    <div class="theme-preview">
+                        <div class="theme-preview-window theme-light">
+                            <div class="theme-header">
+                                <div class="theme-controls">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="theme-content">
+                                <img src="assets/images/themes_constructor.jpg" alt="Конструктор тем" class="theme-screenshot">
+                            </div>
+                        </div>
+                        <div class="theme-info">
+                            <h3>Конструктор тем</h3>
+                            <p>Создайте свою тему, которая будет вашей любимой</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Скачивание -->
+        <section id="download" class="download">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Скачать Harmony Launcher</h2>
+                    <p class="section-subtitle">Доступен для Windows с поддержкой Linux через Wine/PortProton</p>
+                </div>
+                
+                <div class="download-methods">
+                    <div class="download-method">
+                        <div class="method-icon">
+                            <i class="fab fa-windows"></i>
+                        </div>
+                        <h3>Windows</h3>
+                        <p>Нативная поддержка Windows 10/11</p>
+                        <div class="method-actions">
+                            <a href="https://github.com/Temati4/harmony-launcher-v2/releases/latest" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-download"></i>
+                                Скачать .exe
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="download-method">
+                        <div class="method-icon">
+                            <i class="fab fa-linux"></i>
+                        </div>
+                        <h3>Linux (Wine/PortProton)</h3>
+                        <p>Запуск через Wine или PortProton</p>
+                        <div class="method-actions">
+                            <a href="https://github.com/Temati4/harmony-launcher-v2/releases/latest" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-download"></i>
+                                Скачать .exe
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="download-method">
+                        <div class="method-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>PortProton</h3>
+                        <p>Рекомендуемый способ для Linux</p>
+                        <div class="method-actions">
+                            <a href="https://portproton.com" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                Скачать PortProton
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="compatibility-info">
+                    <div class="compatibility-card">
+                        <div class="compatibility-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="compatibility-content">
+                            <h3>Полная совместимость</h3>
+                            <p>Harmony Launcher работает на всех современных дистрибутивах Linux через Wine или PortProton без потери функциональности.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="compatibility-card">
+                        <div class="compatibility-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="compatibility-content">
+                            <h3>Простая установка</h3>
+                            <p>PortProton автоматически настроит все необходимые компоненты для запуска Windows-приложений на Linux.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="system-requirements">
+                    <h3>Системные требования</h3>
+                    <div class="requirements-grid">
+                        <div class="requirement">
+                            <i class="fas fa-microchip"></i>
+                            <span>Процессор: Intel i3 или AMD Ryzen 3</span>
+                        </div>
+                        <div class="requirement">
+                            <i class="fas fa-memory"></i>
+                            <span>RAM: 4 ГБ</span>
+                        </div>
+                        <div class="requirement">
+                            <i class="fas fa-hdd"></i>
+                            <span>Место: 2 ГБ свободного места</span>
+                        </div>
+                        <div class="requirement">
+                            <i class="fas fa-globe"></i>
+                            <span>Интернет: для загрузки игр</span>
+                        </div>
+                        <div class="requirement">
+                            <i class="fab fa-windows"></i>
+                            <span>ОС: Windows 10/11 или Linux с Wine/PortProton</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Сообщество -->
+        <section id="community" class="community">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Присоединяйтесь к сообществу</h2>
+                    <p class="section-subtitle">Будьте в курсе обновлений и общайтесь с другими игроками</p>
+                </div>
+                
+                <div class="community-links">
+                    <a href="https://t.me/harmony_launcher" class="community-link" target="_blank">
+                        <div class="link-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div class="link-content">
+                            <h3>Telegram</h3>
+                            <p>Новости и обсуждения</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.youtube.com/@harmony-dev-ofc" class="community-link" target="_blank">
+                        <div class="link-icon">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="link-content">
+                            <h3>YouTube</h3>
+                            <p>Обзоры и гайды</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://t.me/harmony_launcher_help_bot" class="community-link" target="_blank">
+                        <div class="link-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="link-content">
+                            <h3>Поддержка</h3>
+                            <p>Баг репорты и помощь</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Футер -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-logo">
+                            <div class="logo-icon">
+                                <img src="assets/images/icon_og.jpg" alt="Harmony Launcher" class="logo-img">
+                            </div>
+                            <div class="logo-text">
+                                <h3>Harmony Launcher</h3>
+                                <p>Элегантный Minecraft лаунчер</p>
+                            </div>
+                        </div>
+                        <p class="footer-description">
+                            Создан с любовью к Minecraft и современному дизайну. 
+                            Harmony Launcher - это не просто лаунчер, это произведение искусства.
+                        </p>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Продукт</h4>
+                        <ul>
+                            <li><a href="#features">Возможности</a></li>
+                            <li><a href="#themes">Внешний вид</a></li>
+                            <li><a href="#download">Скачать</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Сообщество</h4>
+                        <ul>
+                            <li><a href="https://t.me/harmony_launcher">Telegram</a></li>
+                            <li><a href="https://www.youtube.com/@harmony-dev-ofc">YouTube</a></li>
+                            <li><a href="https://t.me/harmony_launcher_help_bot">Поддержка</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Harmony Launcher. Все права защищены.</p>
+                    <div class="footer-links">
+                        <a href="#privacy">Политика конфиденциальности</a>
+                        <a href="#terms">Условия использования</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
