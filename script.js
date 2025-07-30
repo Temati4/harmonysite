@@ -1,16 +1,112 @@
 // Harmony Launcher - Основной JavaScript файл
 
-// API Configuration
-const API_URL = 'https://harmony-server-production.up.railway.app';
-const AUTH_TOKEN_KEY = 'harmony_secure_jwt_token_2024_v1';
-const AUTH_USERNAME_KEY = 'harmony_secure_refresh_2024_v1';
+// DOM элементы
+const elements = {
+    // Убираем все элементы статистики
+};
 
-// DOM Elements
-let header, themeToggle, downloadButtons, themePreviews, floatingShapes;
-
-// Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Инициализация всех компонентов
+    init();
+    
+    // Анимация статистики
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateStats();
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    });
+    
+    const heroSection = document.getElementById('hero');
+    if (heroSection) {
+        statsObserver.observe(heroSection);
+    }
+    
+    // Эффект ripple для кнопок
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('btn') || e.target.closest('.btn')) {
+            const btn = e.target.classList.contains('btn') ? e.target : e.target.closest('.btn');
+            
+            // Проверяем, что это не кнопка скачивания в секции download
+            if (!btn.closest('#download') || !btn.classList.contains('btn-primary')) {
+                createRippleEffect(e, btn);
+            }
+        }
+    });
+    
+    // Параллакс эффект для фоновых фигур
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        
+        scrollTimeout = setTimeout(() => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.1);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        }, 10);
+    });
+    
+    // Анимация загрузки страницы
+    document.body.style.opacity = '0';
+    setTimeout(() => {
+        document.body.style.transition = 'opacity 0.5s ease';
+        document.body.style.opacity = '1';
+    }, 100);
+    
+    // Обработка ошибок
+    window.addEventListener('error', function(e) {
+        console.error('Произошла ошибка:', e.error);
+    });
+    
+    // Поддержка клавиатуры
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            // Закрытие модальных окон или других элементов
+        }
+    });
+    
+    // Анимация иконок возможностей
+    const featureIcons = document.querySelectorAll('.feature-icon');
+    featureIcons.forEach(icon => {
+        icon.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1) rotate(5deg)';
+        });
+        
+        icon.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) rotate(0deg)';
+                });
+            });
+
+    // Анимация превью лаунчера
+    const launcherPreview = document.querySelector('.launcher-preview');
+    if (launcherPreview) {
+        launcherPreview.addEventListener('mouseenter', function() {
+            this.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02)';
+        });
+        
+        launcherPreview.addEventListener('mouseleave', function() {
+            this.style.transform = 'perspective(1000px) rotateY(-5deg) rotateX(5deg)';
+        });
+    }
+    
+    // Анимация серверов в превью
+    const serverItems = document.querySelectorAll('.server-item');
+    serverItems.forEach((item, index) => {
+        item.style.animationDelay = `${index * 0.1}s`;
+        item.classList.add('slideInRight');
+    });
+});
+
+// Инициализация всех компонентов
+function init() {
     initThemeManager();
     initHeaderManager();
     initScrollAnimations();
@@ -18,75 +114,12 @@ document.addEventListener('DOMContentLoaded', function() {
     initDownloadButtons();
     initThemePreviews();
     initFloatingShapes();
-    initStatsAnimation();
-    initRippleEffect();
+    initRippleEffects();
     initParallaxEffect();
     initPageLoadAnimation();
     initErrorHandling();
     initKeyboardNavigation();
     initHoverAnimations();
-    initAPI();
-});
-
-// API Integration
-function initAPI() {
-    // Fetch user count from API
-    fetchPlayerCount();
-    
-    // Update user count every 30 seconds
-    setInterval(fetchPlayerCount, 30000);
-}
-
-async function fetchPlayerCount() {
-    try {
-        const response = await fetch(`${API_URL}/users.json`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        
-        if (response.ok) {
-            const data = await response.json();
-            // Подсчитываем количество пользователей в массиве
-            const userCount = Array.isArray(data) ? data.length : 
-                            (data.users && Array.isArray(data.users) ? data.users.length : 0);
-            updatePlayerCount(userCount);
-        } else {
-            console.warn('Failed to fetch users:', response.status);
-            // Use fallback value
-            updatePlayerCount(1250);
-        }
-    } catch (error) {
-        console.error('Error fetching users:', error);
-        // Use fallback value
-        updatePlayerCount(1250);
-    }
-}
-
-function updatePlayerCount(count) {
-    const userStat = document.querySelector('[data-stat="users"] .stat-number');
-    if (userStat) {
-        const currentCount = parseInt(userStat.textContent.replace(/[^\d]/g, ''));
-        if (currentCount !== count) {
-            animateNumberChange(userStat, currentCount, count);
-        }
-    }
-}
-
-function animateNumberChange(element, from, to) {
-    const duration = 1000;
-    const step = (to - from) / (duration / 16);
-    let current = from;
-    
-    const timer = setInterval(() => {
-        current += step;
-        if ((step > 0 && current >= to) || (step < 0 && current <= to)) {
-            current = to;
-            clearInterval(timer);
-        }
-        element.textContent = Math.floor(current).toLocaleString() + '+';
-    }, 16);
 }
 
 // Управление темой
@@ -277,42 +310,29 @@ function initFloatingShapes() {
     });
 }
 
-// Stats Animation
-function initStatsAnimation() {
-    const stats = document.querySelectorAll('.stat-number');
+// Анимация статистики
+function animateStats() {
+    const statNumbers = document.querySelectorAll('.stat-number');
     
-    const animateStats = () => {
-        stats.forEach(stat => {
-            const target = parseInt(stat.getAttribute('data-target') || stat.textContent);
-            const duration = 2000;
-            const step = target / (duration / 16);
-            let current = 0;
+    statNumbers.forEach(stat => {
+        const target = stat.textContent;
+        const isNumber = !isNaN(parseInt(target));
+        
+        if (isNumber) {
+            const finalValue = parseInt(target);
+            let currentValue = 0;
+            const increment = finalValue / 50;
             
             const timer = setInterval(() => {
-                current += step;
-                if (current >= target) {
-                    current = target;
+                currentValue += increment;
+                if (currentValue >= finalValue) {
+                    currentValue = finalValue;
                     clearInterval(timer);
                 }
-                stat.textContent = Math.floor(current).toLocaleString();
-            }, 16);
+                stat.textContent = Math.floor(currentValue) + (target.includes('K') ? 'K+' : '');
+            }, 30);
+        }
     });
-};
-
-    // Trigger animation when stats come into view
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateStats();
-                statsObserver.unobserve(entry.target);
-            }
-        });
-    });
-    
-    const statsContainer = document.querySelector('.hero-stats');
-    if (statsContainer) {
-        statsObserver.observe(statsContainer);
-    }
 }
 
 // Эффект ripple для кнопок
@@ -347,87 +367,4 @@ function createRippleEffect(event, button) {
             ripple.parentNode.removeChild(ripple);
         }
     }, 600);
-}
-
-// Ripple Effect
-function initRippleEffect() {
-    // Add ripple effect to buttons
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('btn') || e.target.closest('.btn')) {
-            const btn = e.target.classList.contains('btn') ? e.target : e.target.closest('.btn');
-            
-            // Check if this is not a download button in the download section
-            if (!btn.closest('#download') || !btn.classList.contains('btn-primary')) {
-                createRippleEffect(e, btn);
-            }
-        }
-    });
-}
-
-// Parallax Effect
-function initParallaxEffect() {
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.floating-shapes, .particle-field');
-        
-        parallaxElements.forEach(element => {
-            const speed = 0.5;
-            element.style.transform = `translateY(${scrolled * speed}px)`;
-        });
-    });
-}
-
-// Page Load Animation
-function initPageLoadAnimation() {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s ease';
-    
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 100);
-}
-
-// Error Handling
-function initErrorHandling() {
-    window.addEventListener('error', function(e) {
-        console.error('JavaScript Error:', e.error);
-    });
-}
-
-// Keyboard Navigation
-function initKeyboardNavigation() {
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            // Close any open modals or dropdowns
-            document.querySelectorAll('.modal, .dropdown').forEach(el => {
-                el.classList.remove('active');
-            });
-        }
-    });
-}
-
-// Hover Animations
-function initHoverAnimations() {
-    // Feature icons hover effect
-    document.querySelectorAll('.feature-icon').forEach(icon => {
-        icon.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.1) rotate(5deg)';
-        });
-        
-        icon.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1) rotate(0deg)';
-        });
-    });
-    
-    // Launcher preview hover effect
-    const launcherPreview = document.querySelector('.launcher-preview');
-    if (launcherPreview) {
-        launcherPreview.addEventListener('mouseenter', function() {
-            this.style.transform = 'perspective(1000px) rotateY(-2deg) rotateX(2deg) scale(1.02)';
-        });
-        
-        launcherPreview.addEventListener('mouseleave', function() {
-            this.style.transform = 'perspective(1000px) rotateY(-5deg) rotateX(5deg)';
-        });
-    }
 } 

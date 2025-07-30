@@ -472,8 +472,8 @@ body {
 
 .hero-stats {
     display: flex;
-    gap: 40px;
-    margin-bottom: 40px;
+    gap: 32px;
+    margin: 32px 0;
 }
 
 .stat {
@@ -482,7 +482,7 @@ body {
 
 .stat-number {
     display: block;
-        font-size: 32px;
+    font-size: 32px;
     font-weight: 700;
     color: var(--primary);
     margin-bottom: 4px;
@@ -490,7 +490,7 @@ body {
 
 .stat-label {
     font-size: 14px;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     font-weight: 500;
 }
 
