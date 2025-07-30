@@ -482,7 +482,7 @@ body {
 
 .stat-number {
     display: block;
-    font-size: 32px;
+        font-size: 32px;
     font-weight: 700;
     color: var(--primary);
     margin-bottom: 4px;
