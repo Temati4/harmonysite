@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет - Harmony Launcher</title>
+    <meta name="description" content="Личный кабинет Harmony Launcher - управление профилем, друзьями и общение">
+    <link rel="icon" href="assets/images/icon_og.jpg" type="image/jpeg">
+    <meta property="og:title" content="Личный кабинет - Harmony Launcher">
+    <meta property="og:description" content="Управление профилем, друзьями и общение в Harmony Launcher">
+    <meta property="og:image" content="assets/images/icon_og.jpg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="profile-styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="assets/images/icon_og.jpg" alt="Harmony Launcher" class="logo-img">
+                    <div class="logo-text">
+                        <h1>Harmony Launcher</h1>
+                        <span class="version">v2.5.6</span>
+                    </div>
+                </a>
+                
+                                 <nav class="nav">
+                     <ul>
+                         <li><a href="index.html" class="nav-link">Главная</a></li>
+                         <li><a href="index.html#features" class="nav-link">Возможности</a></li>
+                         <li><a href="index.html#themes" class="nav-link">Превью</a></li>
+                         <li><a href="index.html#download" class="nav-link">Скачать</a></li>
+                         <li><a href="index.html#community" class="nav-link">Ссылки</a></li>
+                         <li><a href="profile.html" class="nav-link active">Мой кабинет</a></li>
+                     </ul>
+                 </nav>
+
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="index.html#download" class="btn btn-primary">Скачать</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="profile-main">
+        <!-- Auth Section (показывается если не авторизован) -->
+        <section class="auth-section" id="authSection">
+            <div class="container">
+                <div class="auth-wrapper">
+                    <div class="auth-tabs">
+                        <button class="auth-tab active" data-tab="login">Вход</button>
+                        <button class="auth-tab" data-tab="register">Регистрация</button>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form class="auth-form active" id="loginForm">
+                        <h3>Войти в аккаунт</h3>
+                        <div class="form-group">
+                            <label for="loginUsername">Имя пользователя</label>
+                            <input type="text" id="loginUsername" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Пароль</label>
+                            <input type="password" id="loginPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Войти</button>
+                    </form>
+
+                    <!-- Register Form -->
+                    <form class="auth-form" id="registerForm">
+                        <h3>Создать аккаунт</h3>
+                        <div class="form-group">
+                            <label for="registerUsername">Имя пользователя</label>
+                            <input type="text" id="registerUsername" required minlength="3" maxlength="20">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Пароль</label>
+                            <input type="password" id="registerPassword" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPasswordConfirm">Подтвердите пароль</label>
+                            <input type="password" id="registerPasswordConfirm" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section (показывается если авторизован) -->
+        <section class="profile-section hidden" id="profileSection">
+            <div class="container">
+                <div class="profile-grid">
+                    <!-- Profile Info -->
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="profile-info">
+                                <h2 id="profileUsername">Загрузка...</h2>
+                                <p id="profileStatus">Онлайн</p>
+                                <span class="profile-date" id="profileDate">Зарегистрирован: загрузка...</span>
+                            </div>
+                        </div>
+                        <div class="profile-actions">
+                            <button class="btn btn-secondary" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Выйти
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Friends Section -->
+                    <div class="friends-card">
+                        <div class="card-header">
+                            <h3>Друзья</h3>
+                            <button class="btn btn-sm btn-primary" id="addFriendBtn">
+                                <i class="fas fa-plus"></i>
+                                Добавить
+                            </button>
+                        </div>
+                        <div class="friends-list" id="friendsList">
+                            <div class="loading">Загрузка друзей...</div>
+                        </div>
+                    </div>
+
+                                         <!-- Chat Section -->
+                     <div class="chat-card">
+                         <div class="chat-header">
+                             <div class="chat-header-info">
+                                 <h3 id="chatTitle">Чат</h3>
+                                 <div class="chat-status" id="chatStatus">
+                                     <span class="status-dot offline"></span>
+                                     <span>Отключен</span>
+                                 </div>
+                             </div>
+                             <div class="chat-actions">
+                                 <button class="btn btn-sm btn-secondary" id="clearChatBtn" disabled>
+                                     <i class="fas fa-trash"></i>
+                                 </button>
+                                 <button class="btn btn-sm btn-secondary" id="chatSettingsBtn" disabled>
+                                     <i class="fas fa-cog"></i>
+                                 </button>
+                             </div>
+                         </div>
+                         <div class="chat-container">
+                             <div class="chat-messages" id="chatMessages">
+                                 <div class="no-chat">
+                                     <i class="fas fa-comments"></i>
+                                     <p>Выберите друга для начала чата</p>
+                                 </div>
+                             </div>
+                             <div class="chat-input-container">
+                                 <div class="input-wrapper">
+                                     <input type="text" id="chatInput" placeholder="Введите сообщение..." disabled>
+                                     <div class="input-actions">
+                                         <button class="btn btn-sm btn-secondary" id="emojiBtn" disabled>
+                                             <i class="fas fa-smile"></i>
+                                         </button>
+                                         <button class="btn btn-sm btn-secondary" id="attachBtn" disabled>
+                                             <i class="fas fa-paperclip"></i>
+                                         </button>
+                                     </div>
+                                 </div>
+                                 <button class="btn btn-primary" id="sendMessageBtn" disabled>
+                                     <i class="fas fa-paper-plane"></i>
+                                 </button>
+                             </div>
+                         </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+         <!-- Add Friend Modal -->
+     <div class="modal" id="addFriendModal">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h3>Добавить друга</h3>
+                 <button class="modal-close" id="closeAddFriendModal">
+                     <i class="fas fa-times"></i>
+                 </button>
+             </div>
+             <div class="modal-form">
+                 <div class="form-group">
+                     <label for="friendUsername">Имя пользователя</label>
+                     <input type="text" id="friendUsername" placeholder="Введите имя пользователя">
+                 </div>
+                 <div class="modal-actions">
+                     <button class="btn btn-secondary" id="cancelAddFriend">Отмена</button>
+                     <button class="btn btn-primary" id="confirmAddFriend">Добавить</button>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <!-- Emoji Modal -->
+     <div class="modal" id="emojiModal">
+         <div class="modal-content emoji-modal">
+             <div class="modal-header">
+                 <h3>Эмодзи</h3>
+                 <button class="modal-close" id="closeEmojiModal">
+                     <i class="fas fa-times"></i>
+                 </button>
+             </div>
+             <div class="emoji-grid" id="emojiGrid">
+                 <!-- Emojis will be populated by JavaScript -->
+             </div>
+         </div>
+     </div>
+
+     <!-- Chat Settings Modal -->
+     <div class="modal" id="chatSettingsModal">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h3>Настройки чата</h3>
+                 <button class="modal-close" id="closeChatSettingsModal">
+                     <i class="fas fa-times"></i>
+                 </button>
+             </div>
+             <div class="modal-form">
+                 <div class="form-group">
+                     <label class="checkbox-label">
+                         <input type="checkbox" id="soundNotifications" checked>
+                         <span class="checkmark"></span>
+                         Звуковые уведомления
+                     </label>
+                 </div>
+                 <div class="form-group">
+                     <label class="checkbox-label">
+                         <input type="checkbox" id="messagePreview" checked>
+                         <span class="checkmark"></span>
+                         Предварительный просмотр сообщений
+                     </label>
+                 </div>
+                 <div class="form-group">
+                     <label class="checkbox-label">
+                         <input type="checkbox" id="typingIndicator" checked>
+                         <span class="checkmark"></span>
+                         Индикатор набора текста
+                     </label>
+                 </div>
+                 <div class="form-group">
+                     <label class="checkbox-label">
+                         <input type="checkbox" id="readReceipts" checked>
+                         <span class="checkmark"></span>
+                         Читаемые сообщения
+                     </label>
+                 </div>
+                 <div class="modal-actions">
+                     <button class="btn btn-secondary" id="cancelChatSettings">Отмена</button>
+                     <button class="btn btn-primary" id="saveChatSettings">Сохранить</button>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+
+    <!-- Scripts -->
+    <script src="profile.js"></script>
+</body>
+</html> 
